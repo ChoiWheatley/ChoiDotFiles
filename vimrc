@@ -115,5 +115,5 @@ let g:netrw_liststyle= 3
  nnoremap 0 g0
  nnoremap g0 0
 
- command Clip '<,'>w! ~/vim.tmp
- command Paste r ~/vim.tmp
+ " command Clip '<,'>w! ~/vim.tmp
+ " command Paste r ~/vim.tmp
