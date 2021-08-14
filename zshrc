@@ -100,3 +100,12 @@ export TERM=xterm-256color
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
 fi
+
+# starship theme
+if [ ! -e /usr/local/bin/starship ]; then
+    echo "theme \"starship\" is not installed yet. Installation:"
+    echo "\tsh -c \"$(curl -fsSL https://starship.rs/install.sh)\""
+else
+    eval "$(starship init zsh)"
+fi
+
