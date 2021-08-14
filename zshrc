@@ -1,3 +1,14 @@
+# Determine platform first (source gist: https://gist.github.com/mhoffman/4a5f34aaca066bb8469be26f36c7edb3)
+export platform='unknown'
+uname=$(uname)
+if [[ "x${uname}" == "xDarwin" ]]; then
+    export platform='mac'
+elif [[ "x${uname}" == "xLinux" ]]; then
+    export platform='linux'
+fi
+
+
+
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -48,15 +59,20 @@ if  ! command -v z &> /dev/null; then
 fi
 
 # fd and fzf settings
-if ! command -v fdfind &> /dev/null; then
-    echo "command <fd | fdfind> not found! installation: "
-    echo "linux: \tsudo apt install fd-find"
-    echo "mac: \tbrew install fd"
-else
+if [[ ${platform} == 'linux' ]]; then
     alias fd=fdfind
+fi
+if ! command -v fd &> /dev/null; then
+    echo "command \"fd\" not found! installation: "
+    if [[ ${platform} == 'linux' ]]; then
+        echo "\tsudo apt install fd-find"
+    elif [[ ${platform} == 'mac' ]]; then
+        echo "\tbrew install fd"
+    fi
+else
     # ignore with fd
     # Setting fd as the default source for fzf
-    export FZF_DEFAULT_COMMAND='fdfind . "'"$HOME/"'" --type f'
+    export FZF_DEFAULT_COMMAND='fd . "'"$HOME/"'" --type f'
     # To apply the command to CTRL-T as well
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
@@ -81,7 +97,11 @@ if [ -f ~/.ssh/choi-workspace ]; then
 fi
 
 alias tmux="TERM=screen-256color-bce tmux"
-alias l="ls --color=auto -laF;pwd"
+if [[ ${platform} == 'linux' ]]; then
+    alias l="ls --color=auto -laF;pwd"
+elif [[ ${platform} == 'mac' ]]; then
+    alias l="ls -laF;pwd"
+fi
 alias ..="cd ../"
 alias ...="cd ../../"
 alias ....="cd ../../../"
@@ -104,7 +124,7 @@ fi
 # starship theme
 if [ ! -e /usr/local/bin/starship ]; then
     echo "theme \"starship\" is not installed yet. Installation:"
-    echo "\tsh -c \"$(curl -fsSL https://starship.rs/install.sh)\""
+    echo "\tsh -c \"\$(curl -fsSL https://starship.rs/install.sh)\""
 else
     eval "$(starship init zsh)"
 fi
