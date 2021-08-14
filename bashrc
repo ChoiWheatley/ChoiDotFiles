@@ -8,93 +8,16 @@ case $- in
       *) return;;
 esac
 
-##################################################
-# Determine plaform first
-##################################################
-export platform='unknown'
-uname=$(uname)
-if [[ "x${uname}" == "xDarwin" ]]; then
-    export platform='mac'
-elif [[ "x${uname}" == "xLinux" ]]; then
-    export platform='linux'
-fi
-
-##################################################
-# General
-##################################################
-alias bashrc="vim ~/.bashrc"
-
-##################################################
-# prompt
-##################################################
-declare -F | grep __git_ps1 > /dev/null
-if [ "$?" -eq 0 ]
-then
-    echo ${platform}
-        export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]$(__git_ps1 "(%s)")\[\033[01;34m\]$\[\033[00m\] '
-# else
-#     if [[ ${platform} == 'mac' ]]; then
-#         export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]$(parse_git_branch)\[\033[01;34m\]$\[\033[00m\] '
-#     else
-#         export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\]:\w\[\033[31m\]\[\033[01;34m\]$\[\033[00m\] '
-#     fi
-fi
-
-parse_git_branch() {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-##################################################
-# History
-# don't put duplicate lines in the history <C-r>
-##################################################
-export HISTCONTROL=ignoredups
-export HISTSIZE=99999
-
-##################################################
-# Environment
-##################################################
-export EDITOR=vim
-
-##################################################
-# Environment
-##################################################
-
-
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-alias .......="cd ../../../../../.."
-alias ........="cd ../../../../../../.."
-alias .........="cd ../../../../../../../.."
-alias ..........="cd ../../../../../../../../.."
-alias ...........="cd ../../../../../../../../../.."
-alias ............="cd ../../../../../../../../../../.."
-alias .............="cd ../../../../../../../../../../../.."
-
-##################################################
-# Platform Specifics
-# Mac OS
-##################################################
-if [[ ${platform} == 'mac' ]]; then
-	# TODO
-	alias update='brew update'
-	alias upgrade='brew update && brew update'
-
-##################################################
-# Platform Specifics
-# Linux
-##################################################
-elif [[ ${platform} == 'linux' ]]; then
-	# TODO
-	alias update='sudo apt-get update'
-	alias upgrade='sudo apt-get update && sudo apt-get upgrade -y'
-
-fi
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -132,6 +55,23 @@ if [ -n "$force_color_prompt" ]; then
 	color_prompt=
     fi
 fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -193,4 +133,10 @@ clip(){
    #     echo "${1}" > "$target"
     fi
 }
+
+# z command installation
+#. $HOME/z/z.sh
+
+# export PS1="\[\e[36;1m\]\u@\[\e[32;1m\]\h:\[\e[31;1m\]\w\n> \[\e[0m\]"
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
