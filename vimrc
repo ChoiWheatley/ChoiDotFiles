@@ -31,6 +31,7 @@ filetype off                  " required
  let g:airline_section_z = ''
  let g:airline_section_y = ''
  let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
+ let g:ctrlp_show_hidden = 1
 
 " syntastic
  set statusline+=%#warningmsg#
