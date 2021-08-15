@@ -72,9 +72,9 @@ if ! command -v fd &> /dev/null; then
 else
     # ignore with fd
     # Setting fd as the default source for fzf
-    export FZF_DEFAULT_COMMAND='fd . "'"$HOME/"'" --type f'
+    export FZF_DEFAULT_COMMAND="$(fd . "'"$HOME"'"/ --type f)"
     # To apply the command to CTRL-T as well
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 fi
 
 
