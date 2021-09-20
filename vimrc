@@ -118,3 +118,10 @@ let g:netrw_liststyle= 3
 
  " command Clip '<,'>w! ~/vim.tmp
  " command Paste r ~/vim.tmp
+ 
+ " for rainbow parentheses
+ au VimEnter * RainbowParenthesesToggle
+ au Syntax * RainbowParenthesesLoadRound
+ au Syntax * RainbowParenthesesLoadSquare
+ au Syntax * RainbowParenthesesLoadBraces
+
