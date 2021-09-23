@@ -3,6 +3,7 @@ export platform='unknown'
 uname=$(uname)
 if [[ "x${uname}" == "xDarwin" ]]; then
     export platform='mac'
+    alias nproc="sysctl -n hw.physicalcpu"
 elif [[ "x${uname}" == "xLinux" ]]; then
     export platform='linux'
 fi
