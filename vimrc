@@ -34,13 +34,13 @@ filetype off                  " required
  let g:ctrlp_show_hidden = 1
 
 " syntastic
- set statusline+=%#warningmsg#
- set statusline+=%{SyntasticStatuslineFlag()}
- set statusline+=%*
+ " set statusline+=%#warningmsg#
+ " set statusline+=%{SyntasticStatuslineFlag()}
+ " set statusline+=%*
  "let g:syntastic_always_populate_loc_list = 1
- let g:syntastic_auto_loc_list = 1
- let g:syntastic_check_on_open = 1
- let g:syntastic_check_on_wq = 0
+ " let g:syntastic_auto_loc_list = 1
+ " let g:syntastic_check_on_open = 1
+ " let g:syntastic_check_on_wq = 0
  let g:syntastic_c_check_header = 1
  let g:syntastic_c_include_dirs = ["/home/choe/workspace/choi-workspace/util"]
  let g:syntastic_c_compiler_options = "-D_XOPEN_SOURCE=500"

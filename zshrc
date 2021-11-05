@@ -7,19 +7,6 @@ elif [[ "x${uname}" == "xLinux" ]]; then
     export platform='linux'
 fi
 
-
-
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-source $ZSH/oh-my-zsh.sh
-
-
 # plugin 'zsh-syntax-highlighting'
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
     echo "plugin \"zsh-syntax-highlighting\" dosen't exist! Installation: "
@@ -34,6 +21,18 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     echo ""
 fi
 
+
+
+
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+source $ZSH/oh-my-zsh.sh
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -60,7 +59,7 @@ fi
 
 # fd and fzf settings
 if [[ ${platform} == 'linux' ]]; then
-    alias fd=fdfind
+    alias fd=find
 fi
 if ! command -v fd &> /dev/null; then
     echo "command \"fd\" not found! installation: "
@@ -72,11 +71,7 @@ if ! command -v fd &> /dev/null; then
 else
     # ignore with fd
     # Setting fd as the default source for fzf
-    if [[ ${platform} == 'linux' ]]; then
-        export FZF_DEFAULT_COMMAND="fdfind --type f"
-    elif [[ ${platform} == 'mac' ]]; then
-        export FZF_DEFAULT_COMMAND="fd --type f"
-    fi
+    export FZF_DEFAULT_COMMAND="fd --type f"
     # To apply the command to CTRL-T as well
     export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 fi
