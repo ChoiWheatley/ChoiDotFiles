@@ -73,6 +73,7 @@ filetype off                  " required
  set wrap linebreak
  set hlsearch
  set autoindent
+ set hidden " switch buffers in vim without saving to a currently modified file
 
 " Finding Files:
 "   search down into subfolders
@@ -91,6 +92,13 @@ filetype off                  " required
 
 " using netrw as tree-view
 let g:netrw_liststyle= 3
+
+" Last Edit Position:
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
 
 
  syntax on
