@@ -112,7 +112,6 @@ autocmd BufReadPost *
  nmap <C-h> :bN<enter>
  " Ctrl-l to move to next buffer <bn>
  nmap <C-l> :bn<enter>
- "hhellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohelloello
 
  " `j` and `k` is now `gj` and `gk`
  nnoremap j gj
@@ -133,3 +132,8 @@ autocmd BufReadPost *
  au Syntax * RainbowParenthesesLoadSquare
  au Syntax * RainbowParenthesesLoadBraces
 
+" Shift-hjkl moves cursor faster
+nnoremap <S-h> 10h
+nnoremap <S-j> 8j
+nnoremap <S-k> 8k
+nnoremap <S-l> 10l
