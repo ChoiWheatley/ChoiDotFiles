@@ -47,6 +47,9 @@ filetype off                  " required
  let g:syntastic_stl_format = "[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]"
 
 
+ "colorscheme base16-default-light
+ colorscheme medic_chalk
+
 
 
  set nu
@@ -63,7 +66,7 @@ filetype off                  " required
  set paste
  set encoding=utf8
  set termencoding=utf8
- set cursorline
+ " set cursorline
  set scrolloff=4
  set smartindent
  set tabstop=4
@@ -103,9 +106,6 @@ autocmd BufReadPost *
 
  syntax on
 
-
- "colorscheme base16-default-light
- colorscheme medic_chalk
 
 
  " Ctrl-h to move to previous buffer <bN>
