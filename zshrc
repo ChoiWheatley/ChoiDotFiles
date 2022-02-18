@@ -59,15 +59,16 @@ if  ! command -v z &> /dev/null; then
 fi
 
 # fd and fzf settings
-if [[ ${platform} == 'linux' ]]; then
-    alias fd=find
-fi
 if ! command -v fd &> /dev/null; then
-    echo "command \"fd\" not found! installation: "
-    if [[ ${platform} == 'linux' ]]; then
-        echo "\tsudo apt install fd-find"
-    elif [[ ${platform} == 'mac' ]]; then
-        echo "\tbrew install fd"
+    if ! command -v fdfind &> /dev/null; then
+        echo "command \"fd\" not found! installation: "
+        if [[ ${platform} == 'linux' ]]; then
+            echo "\tsudo apt install fd-find"
+        elif [[ ${platform} == 'mac' ]]; then
+            echo "\tbrew install fd"
+        fi
+    else
+        alias fd=fdfind;
     fi
 else
     # ignore with fd
@@ -131,3 +132,6 @@ else
     eval "$(starship init zsh)"
 fi
 
+# easy apt commands
+alias aptup='sudo apt update && sudo apt upgrade'
+alias apti='sudo apt install'
