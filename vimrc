@@ -34,18 +34,21 @@ filetype off                  " required
  let g:ctrlp_show_hidden = 1
 
 " syntastic
- set statusline+=%#warningmsg#
- set statusline+=%{SyntasticStatuslineFlag()}
- set statusline+=%*
+ " set statusline+=%#warningmsg#
+ " set statusline+=%{SyntasticStatuslineFlag()}
+ " set statusline+=%*
  "let g:syntastic_always_populate_loc_list = 1
- let g:syntastic_auto_loc_list = 1
- let g:syntastic_check_on_open = 1
- let g:syntastic_check_on_wq = 0
+ " let g:syntastic_auto_loc_list = 1
+ " let g:syntastic_check_on_open = 1
+ " let g:syntastic_check_on_wq = 0
  let g:syntastic_c_check_header = 1
  let g:syntastic_c_include_dirs = ["/home/choe/workspace/choi-workspace/util"]
  let g:syntastic_c_compiler_options = "-D_XOPEN_SOURCE=500"
  let g:syntastic_stl_format = "[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]"
 
+
+ "colorscheme base16-default-light
+ colorscheme medic_chalk
 
 
 
@@ -63,7 +66,7 @@ filetype off                  " required
  set nopaste
  set encoding=utf8
  set termencoding=utf8
- set cursorline
+ " set cursorline
  set scrolloff=4
  set smartindent
  set tabstop=4
@@ -73,6 +76,7 @@ filetype off                  " required
  set wrap linebreak
  set hlsearch
  set autoindent
+ set hidden " switch buffers in vim without saving to a currently modified file
 
 " Finding Files:
 "   search down into subfolders
@@ -92,19 +96,22 @@ filetype off                  " required
 " using netrw as tree-view
 let g:netrw_liststyle= 3
 
+" Last Edit Position:
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
+
 
  syntax on
 
-
- "colorscheme base16-default-light
- colorscheme medic_chalk
 
 
  " Ctrl-h to move to previous buffer <bN>
  nmap <C-h> :bN<enter>
  " Ctrl-l to move to next buffer <bn>
  nmap <C-l> :bn<enter>
- "hhellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohelloello
 
  " `j` and `k` is now `gj` and `gk`
  nnoremap j gj
@@ -118,3 +125,15 @@ let g:netrw_liststyle= 3
 
  " command Clip '<,'>w! ~/vim.tmp
  " command Paste r ~/vim.tmp
+ 
+ " for rainbow parentheses
+ au VimEnter * RainbowParenthesesToggle
+ au Syntax * RainbowParenthesesLoadRound
+ au Syntax * RainbowParenthesesLoadSquare
+ au Syntax * RainbowParenthesesLoadBraces
+
+" Shift-hjkl moves cursor faster
+nnoremap <S-h> 10h
+nnoremap <S-j> 8j
+nnoremap <S-k> 8k
+nnoremap <S-l> 10l

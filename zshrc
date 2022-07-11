@@ -3,22 +3,10 @@ export platform='unknown'
 uname=$(uname)
 if [[ "x${uname}" == "xDarwin" ]]; then
     export platform='mac'
+    alias nproc="sysctl -n hw.physicalcpu"
 elif [[ "x${uname}" == "xLinux" ]]; then
     export platform='linux'
 fi
-
-
-
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-source $ZSH/oh-my-zsh.sh
-
 
 # plugin 'zsh-syntax-highlighting'
 if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
@@ -34,6 +22,18 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     echo ""
 fi
 
+
+
+
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+source $ZSH/oh-my-zsh.sh
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -59,24 +59,21 @@ if  ! command -v z &> /dev/null; then
 fi
 
 # fd and fzf settings
-if [[ ${platform} == 'linux' ]]; then
-    alias fd=fdfind
-fi
 if ! command -v fd &> /dev/null; then
-    echo "command \"fd\" not found! installation: "
-    if [[ ${platform} == 'linux' ]]; then
-        echo "\tsudo apt install fd-find"
-    elif [[ ${platform} == 'mac' ]]; then
-        echo "\tbrew install fd"
+    if ! command -v fdfind &> /dev/null; then
+        echo "command \"fd\" not found! installation: "
+        if [[ ${platform} == 'linux' ]]; then
+            echo "\tsudo apt install fd-find"
+        elif [[ ${platform} == 'mac' ]]; then
+            echo "\tbrew install fd"
+        fi
+    else
+        alias fd=fdfind;
     fi
 else
     # ignore with fd
     # Setting fd as the default source for fzf
-    if [[ ${platform} == 'linux' ]]; then
-        export FZF_DEFAULT_COMMAND="fdfind --type f"
-    elif [[ ${platform} == 'mac' ]]; then
-        export FZF_DEFAULT_COMMAND="fd --type f"
-    fi
+    export FZF_DEFAULT_COMMAND="fd --type f"
     # To apply the command to CTRL-T as well
     export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 fi
@@ -123,9 +120,9 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # tmux settings
 export TERM=xterm-256color
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi
+#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#    tmux attach -t default || tmux new -s default
+#fi
 
 # starship theme
 # if [ ! -e /usr/local/bin/starship ]; then
@@ -135,3 +132,6 @@ fi
 #     eval "$(starship init zsh)"
 # fi
 
+# easy apt commands
+alias aptup='sudo apt update && sudo apt upgrade'
+alias apti='sudo apt install'
