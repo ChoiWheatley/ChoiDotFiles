@@ -100,7 +100,7 @@ if [ -f ~/.ssh/choi-workspace ]; then
     ssh-add ~/.ssh/choi-workspace
 fi
 
-alias tmux="TERM=screen-256color-bce tmux"
+# alias tmux="TERM=screen-256color-bce tmux"
 if [[ ${platform} == 'linux' ]]; then
     alias l="ls --color=auto -laF;pwd"
 elif [[ ${platform} == 'mac' ]]; then
@@ -128,10 +128,10 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
 fi
 
 # starship theme
-if [ ! -e /usr/local/bin/starship ]; then
-    echo "theme \"starship\" is not installed yet. Installation:"
-    echo "\tsh -c \"\$(curl -fsSL https://starship.rs/install.sh)\""
-else
-    eval "$(starship init zsh)"
-fi
+# if [ ! -e /usr/local/bin/starship ]; then
+#     echo "theme \"starship\" is not installed yet. Installation:"
+#     echo "\tsh -c \"\$(curl -fsSL https://starship.rs/install.sh)\""
+# else
+#     eval "$(starship init zsh)"
+# fi
 

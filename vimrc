@@ -15,8 +15,8 @@ filetype off                  " required
  Plugin 'chriskempson/base16-vim'
  Plugin 'kien/rainbow_parentheses.vim'
  Plugin 'ParamagicDev/vim-medic_chalk'
- Plugin 'git://github.com/tpope/vim-obsession.git'
- Plugin 'git://github.com/tpope/vim-commentary.git'
+ Plugin 'tpope/vim-obsession'
+ Plugin 'tpope/vim-commentary'
 " " Brief help
 " " :PluginList       - lists configured plugins
 " " :PluginInstall    - installs plugins; append `!` to update or just
@@ -60,7 +60,7 @@ filetype off                  " required
  set termguicolors
  let base16colorspace=256
  set smarttab
- set paste
+ set nopaste
  set encoding=utf8
  set termencoding=utf8
  set cursorline
