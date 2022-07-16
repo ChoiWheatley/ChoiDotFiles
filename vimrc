@@ -69,10 +69,10 @@ filetype off                  " required
  " set cursorline
  set scrolloff=4
  set smartindent
- set tabstop=4
+ set tabstop=2
  set expandtab
- set shiftwidth=4
- set softtabstop=4
+ set shiftwidth=2
+ set softtabstop=2
  set wrap linebreak
  set hlsearch
  set autoindent
