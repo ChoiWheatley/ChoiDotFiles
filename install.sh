@@ -1,10 +1,12 @@
+#!/usr/bin/env bash
+
 echo "hello, world!"
 
-CHOI_PATH=`pwd -P`
-echo "CHOI_PATH=${CHOI_PATH}"
+BASEDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+echo "BASEDIR=${BASEDIR}"
 
-# echo "source ${CHOI_PATH}/zshrc" > ~/.zshrc
-cat ${CHOI_PATH}/zshrc > ~/.zshrc
-echo "source ${CHOI_PATH}/vimrc" > ~/.vimrc
-echo "source ${CHOI_PATH}/tmux.conf" > ~/.tmux.conf
+# echo "source ${BASEDIR}/zshrc" > ~/.zshrc
+cat ${BASEDIR}/zshrc > ${HOME}/.zshrc
+echo "source ${BASEDIR}/vimrc" > ${HOME}/.vimrc
+echo "source ${BASEDIR}/tmux.conf" > ${HOME}/.tmux.conf
 

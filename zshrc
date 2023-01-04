@@ -1,3 +1,8 @@
+
+if -f ${HOME}/.profile; then
+    source ${HOME}/.profile
+fi
+
 # Determine platform first (source gist: https://gist.github.com/mhoffman/4a5f34aaca066bb8469be26f36c7edb3)
 export platform='unknown'
 uname=$(uname)
@@ -135,3 +140,4 @@ export TERM=xterm-256color
 # easy apt commands
 alias aptup='sudo apt update && sudo apt upgrade'
 alias apti='sudo apt install'
+
