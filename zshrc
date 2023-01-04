@@ -42,7 +42,7 @@ source $ZSH/oh-my-zsh.sh
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf zsh-z zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-z zsh-syntax-highlighting zsh-autosuggestions)
 
 # z command installation
 if  ! command -v z &> /dev/null; then
@@ -74,30 +74,6 @@ if ! command -v fuck &> /dev/null; then
     fi
   fi
   eval $(thefuck --alias)
-fi
-
-
-
-
-
-# fd and fzf settings
-if ! command -v fd &> /dev/null; then
-    if ! command -v fdfind &> /dev/null; then
-        echo "command \"fd\" not found! installation: "
-        if [[ ${platform} == 'linux' ]]; then
-            echo "\tsudo apt install fd-find"
-        elif [[ ${platform} == 'mac' ]]; then
-            echo "\tbrew install fd"
-        fi
-    else
-        alias fd=fdfind;
-    fi
-else
-    # ignore with fd
-    # Setting fd as the default source for fzf
-    export FZF_DEFAULT_COMMAND="fd --type f"
-    # To apply the command to CTRL-T as well
-    export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 fi
 
 
