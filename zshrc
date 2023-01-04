@@ -28,8 +28,6 @@ if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
 fi
 
 
-
-
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -62,6 +60,25 @@ if  ! command -v z &> /dev/null; then
     # . $HOME/z/z.sh
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
+
+
+# thefuck
+# https://github.com/nvbn/thefuck
+if ! command -v fuck &> /dev/null; then
+  if ! command -v thefuck &> /dev/null; then
+    echo "command \"thefuck\" is not found! installation: "
+    if [[ ${platform} == 'linux' ]]; then
+      echo "\tsudo apt install thefuck"
+    elif [[ ${platform} == 'mac' ]]; then
+      echo "\tbrew install thefuck"
+    fi
+  fi
+  eval $(thefuck --alias)
+fi
+
+
+
+
 
 # fd and fzf settings
 if ! command -v fd &> /dev/null; then
