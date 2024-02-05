@@ -46,9 +46,9 @@ plugins=(git zsh-z zsh-syntax-highlighting zsh-autosuggestions)
 
 # z command installation
 if  ! command -v z &> /dev/null; then
-    if [ ! -d $ZSH_CUSTOM/plugins/zsh-z ]; then
+    if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z ]; then
         echo "command z not found! installation: "
-        echo "\tgit clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z"
+        echo "\tgit clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z"
         echo "\tand add zsh-z to the line of your .zshrc that specifies plugins=(), e.g., plugins=( git zsh-z )."
         echo ""
     else
