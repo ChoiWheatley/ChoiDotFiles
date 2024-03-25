@@ -34,7 +34,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+
+# ZSH_THEME="robbyrussell" # default prompt
+ZSH_THEME="spaceship" # https://spaceship-prompt.sh/getting-started/#Requirements
 
 source $ZSH/oh-my-zsh.sh
 # Which plugins would you like to load?
@@ -56,10 +58,9 @@ if  ! command -v z &> /dev/null; then
         autoload -U compinit && compinit
         zstyle ':completion:*"' menu select
     fi
-# else
-    # . $HOME/z/z.sh
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 # thefuck
@@ -87,12 +88,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-fi
-
-# my git authentication process
-if [ -f ~/.ssh/choi-workspace ]; then
-    eval $(ssh-agent -s)
-    ssh-add ~/.ssh/choi-workspace
 fi
 
 # alias tmux="TERM=screen-256color-bce tmux"
@@ -131,6 +126,5 @@ export TERM=xterm-256color
 # fi
 
 # easy apt commands
-alias aptup='sudo apt update && sudo apt upgrade'
+alias aptup='sudo apt update && sudo apt upgrade -y'
 alias apti='sudo apt install'
-
