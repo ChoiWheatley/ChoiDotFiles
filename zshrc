@@ -65,17 +65,17 @@ fi
 
 # thefuck
 # https://github.com/nvbn/thefuck
-if ! command -v fuck &> /dev/null; then
-  if ! command -v thefuck &> /dev/null; then
-    echo "command \"thefuck\" is not found! installation: "
-    if [[ ${platform} == 'linux' ]]; then
-      echo "\tsudo apt install thefuck"
-    elif [[ ${platform} == 'mac' ]]; then
-      echo "\tbrew install thefuck"
-    fi
-  fi
-  eval $(thefuck --alias)
-fi
+# if ! command -v fuck &> /dev/null; then
+#   if ! command -v thefuck &> /dev/null; then
+#     echo "command \"thefuck\" is not found! installation: "
+#     if [[ ${platform} == 'linux' ]]; then
+#       echo "\tsudo apt install thefuck"
+#     elif [[ ${platform} == 'mac' ]]; then
+#       echo "\tbrew install thefuck"
+#     fi
+#   fi
+#   eval $(thefuck --alias)
+# fi
 
 
 # enable color support of ls and also add handy aliases
