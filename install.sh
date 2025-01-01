@@ -18,6 +18,7 @@ fi
 if grep -q "ChoiDotFiles/zshrc" "$HOME/.zshrc"; then
     echo "You're already sourcing ChoiDotFiles/zshrc."
 else
-  echo "source ${BASEDIR}/zshrc" >> ~/.zshrc
+  echo "# This line MUST be in bottom of this file!!" >> $HOME/.zshrc
+  echo "source ${BASEDIR}/zshrc" >> $HOME/.zshrc
 fi
 
