@@ -1,3 +1,4 @@
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 if [ -f ${HOME}/.profile ]; then
     source ${HOME}/.profile
@@ -21,7 +22,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
 # ZSH_THEME="robbyrussell" # default prompt
-./check_spaceship.sh
+${SCRIPT_DIR}/check_spaceship.sh
 ZSH_THEME="spaceship" # https://spaceship-prompt.sh/getting-started/#Requirements
 
 source $ZSH/oh-my-zsh.sh
