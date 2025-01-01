@@ -31,7 +31,7 @@ source $ZSH/oh-my-zsh.sh
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-z zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 ## for zoxide
 if command -v zoxide &> /dev/null; then
